@@ -13,7 +13,7 @@ def parse_workout_input(user_input: str):
     }
 
     # Normalize input
-    lines = user_input.strip().splitlines()
+    lines = user_input.get("exercises", "").splitlines()
     flat = " ".join(lines)
 
     # Body Focus
