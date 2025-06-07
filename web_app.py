@@ -1,12 +1,11 @@
 import streamlit as st
 from src.parser import parse_workout_input
 from src.sheet_writer import write_workout_to_sheet
+from src.dashboard import render_dashboard
+from src.log_workout import render_log_form  # if you refactored your form logic
 
 st.set_page_config(page_title="NeoFit Workout Logger", layout="centered")
 st.title("🏋️ NeoFit Workout Logger")
-
-from src.dashboard import render_dashboard
-from src.log_workout import render_log_form  # if you refactored your form logic
 
 page = st.sidebar.radio("🧭 Navigation", ["Log Workout", "Dashboard"])
 
