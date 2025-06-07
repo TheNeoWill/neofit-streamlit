@@ -5,12 +5,15 @@ from src.sheet_writer import write_workout_to_sheet
 st.set_page_config(page_title="NeoFit Workout Logger", layout="centered")
 st.title("🏋️ NeoFit Workout Logger")
 
+from src.dashboard import render_dashboard
+from src.log_workout import render_log_form  # if you refactored your form logic
+
 page = st.sidebar.radio("🧭 Navigation", ["Log Workout", "Dashboard"])
 
 if page == "Dashboard":
-    from src.dashboard import render_dashboard
     render_dashboard()
-    st.stop()
+else:
+    render_log_form()
 
 with st.form("log_form"):
     st.header("📝 Log a New Workout")
