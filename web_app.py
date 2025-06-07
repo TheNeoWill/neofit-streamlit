@@ -1,10 +1,8 @@
 import streamlit as st
 st.set_page_config(page_title="NeoFit Workout Logger", layout="centered")
+st.title("🏋️ NeoFit Workout Logger")
 from src.parser import parse_workout_input
 from src.sheet_writer import write_workout_to_sheet
-
-st.set_page_config(page_title="NeoFit Workout Logger", layout="centered")
-st.title("🏋️ NeoFit Workout Logger")
 
 page = st.sidebar.radio("🧭 Navigation", ["Log Workout", "Dashboard"])
 
