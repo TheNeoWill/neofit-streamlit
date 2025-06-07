@@ -19,4 +19,4 @@ def write_workout_to_sheet(row_dict, spreadsheet_name="Workout Tracker", workshe
         row_dict.get("Sets x (Reps x Lbs)"),
         row_dict.get("Notes")
     ]
-    sheet.append_row(row)
+    sheet.append_row([str(x) if x is not None else "" for x in row])
