@@ -10,9 +10,9 @@ page = st.sidebar.radio("🧭 Navigation", ["Log Workout", "Dashboard"])
 
 if page == "Dashboard":
     try:
-    render_dashboard()
-except Exception as e:
-    st.error(f'Error loading dashboard: {e}')
+        render_dashboard()
+    except Exception as e:
+        st.error(f"Error loading dashboard: {e}")
 else:
     render_log_form()
 
