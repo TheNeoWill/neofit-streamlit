@@ -2,9 +2,8 @@ import streamlit as st
 from src.parser import parse_workout_input
 from src.sheet_writer import write_workout_to_sheet
 
-st.markdown("## 🏋️ NeoFit Logger")
-st.caption("Log your training with speed and structure. No fluff. No tap-dancing.")
-st.markdown("---")
+st.set_page_config(page_title="NeoFit Workout Logger", layout="centered")
+st.title("🏋️ NeoFit Workout Logger")
 
 with st.form("log_form"):
     st.header("📝 Log a New Workout")
@@ -42,4 +41,4 @@ if submitted:
     }
     parsed = parse_workout_input(entry)
     write_workout_to_sheet(parsed)
-    st.success("✅ lock and loaded!")
+    st.success("✅ Workout logged successfully!")
