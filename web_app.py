@@ -1,3 +1,4 @@
+st.write("Secret:", st.secrets["google"]["service_account"]
 import streamlit as st
 from src.parser import parse_workout_input
 from src.sheet_writer import write_workout_to_sheet
