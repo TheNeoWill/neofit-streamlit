@@ -22,14 +22,14 @@ with st.form("log_form"):
 
     # Section 3: Exercises
     st.caption("Exercises (one per line)")
-    exercises = st.text_area("e.g. Barbell Bench Press 5x10 @120lbs", height=150)
+    exercises = st.text_area("ex. Barbell Bench Press 5x10 @120lbs", height=150)
 
     # Section 4: Notes
     st.caption("Any notes?")
     notes = st.text_area("Optional notes", height=80)
 
     # Submit
-    submitted = st.form_submit_button("📈 Log Workout")
+    submitted = st.form_submit_button("Log this workout 🏋")
 
 if submitted:
     entry = {
