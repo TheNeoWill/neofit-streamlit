@@ -41,5 +41,6 @@ if submitted:
         "notes": notes
     }
     parsed = parse_workout_input(entry)
+    with st.spinner("Writing to your sheet..."):
     write_workout_to_sheet(parsed)
-    st.success("✅ Workout logged successfully!")
+    st.success("✅ lock and loaded!")
