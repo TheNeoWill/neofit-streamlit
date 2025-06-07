@@ -1,15 +1,17 @@
 import re
 from datetime import datetime
 
-def parse_workout_input(user_input: str):
-    result = {
+def parse_workout_input(user_input: dict):
+    return {
         "Date": datetime.today().strftime("%Y-%m-%d"),
         "Workout Type": "Strength",
-        "Duration (min)": "",
-        "Intensity (1–5)": "",
-        "Body Focus": "",
-        "Sets x (Reps x Lbs)": "",
-        "Notes": ""
+        "Duration (min)": str(user_input.get("duration", "")),
+        "Intensity (1–5)": int(user_input.get("intensity", 3)),
+        "Body Focus": user_input.get("body_focus", ""),
+        "Sets x (Reps x Lbs)": "\n".join(
+            f"- {line.strip()}" for line in user_input.get("exercises", "").splitlines() if line.strip()
+        ),
+        "Notes": user_input.get("notes", "")
     }
 
     # Normalize input
