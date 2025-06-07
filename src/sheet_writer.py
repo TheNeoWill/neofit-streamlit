@@ -1,12 +1,11 @@
+import gspread
 import streamlit as st
 import json
-import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
-
-def write_workout_to_sheet(json_key_path, row_dict, spreadsheet_name="Workout Tracker", worksheet_name="Workout log"):
+def write_workout_to_sheet(row_dict, spreadsheet_name="Workout Tracker", worksheet_name="Workout log"):
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-    credentials = ServiceAccountCredentials.from_json_keyfile_dict(json.loads(st.secrets['google']['service_account']), scope)
+    credentials = ServiceAccountCredentials.from_json_keyfile_dict(json.loads(st.secrets["google"]["service_account"]), scope)
     client = gspread.authorize(credentials)
 
     sheet = client.open(spreadsheet_name).worksheet(worksheet_name)
@@ -20,7 +19,4 @@ def write_workout_to_sheet(json_key_path, row_dict, spreadsheet_name="Workout Tr
         row_dict.get("Sets x (Reps x Lbs)"),
         row_dict.get("Notes")
     ]
-
-    
     sheet.append_row(row)
-
