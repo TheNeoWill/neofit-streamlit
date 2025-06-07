@@ -6,12 +6,29 @@ st.set_page_config(page_title="NeoFit Workout Logger", layout="centered")
 st.title("🏋️ NeoFit Workout Logger")
 
 with st.form("log_form"):
-    body_focus = st.selectbox("Workout Type", ["Push", "Pull", "Legs", "Upper", "Lower", "Full Body", "Cardio"])
-    duration = st.number_input("Duration (min)", min_value=5, max_value=180, step=5)
-    intensity = st.slider("Intensity (1–5)", 1, 5, 3)
-    exercises = st.text_area("Exercises (one per line)", height=150)
-    notes = st.text_area("Notes", height=100)
+    st.header("📝 Log a New Workout")
 
+    # Section 1: Focus + grouping
+    st.caption("Workout Type and Focus")
+    body_focus = st.selectbox("Body Focus", ["Push", "Pull", "Legs", "Upper", "Lower", "Full Body", "Cardio"])
+
+    # Section 2: Duration + Intensity side-by-side
+    st.caption("Session Details")
+    col1, col2 = st.columns(2)
+    with col1:
+        duration = st.number_input("Duration (min)", min_value=5, max_value=180, step=5)
+    with col2:
+        intensity = st.slider("Intensity (1–5)", 1, 5, 3)
+
+    # Section 3: Exercises
+    st.caption("Exercises (one per line)")
+    exercises = st.text_area("e.g. Barbell Bench Press 5x10 @120lbs", height=150)
+
+    # Section 4: Notes
+    st.caption("Any notes?")
+    notes = st.text_area("Optional notes", height=80)
+
+    # Submit
     submitted = st.form_submit_button("📈 Log Workout")
 
 if submitted:
