@@ -1,4 +1,5 @@
 import streamlit as st
+st.set_page_config(page_title="NeoFit Workout Logger", layout="centered")
 from src.parser import parse_workout_input
 from src.sheet_writer import write_workout_to_sheet
 
@@ -8,7 +9,10 @@ st.title("🏋️ NeoFit Workout Logger")
 page = st.sidebar.radio("🧭 Navigation", ["Log Workout", "Dashboard"])
 
 if page == "Dashboard":
+    try:
     render_dashboard()
+except Exception as e:
+    st.error(f'Error loading dashboard: {e}')
 else:
     render_log_form()
 
