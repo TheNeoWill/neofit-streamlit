@@ -22,9 +22,8 @@ def render_dashboard():
     df["Intensity (1-5)"] = pd.to_numeric(df["Intensity (1-5)"], errors="coerce")
 
     st.subheader("Workout Frequency (Last 4 Weeks)")
-    # Group by week and format the week label as string
+    # Format week labels like "Jun 03"
     df["Week"] = df["Date"].dt.to_period("W").apply(lambda r: r.start_time.strftime("%b %d"))
-
     freq = df["Week"].value_counts().sort_index()
     st.bar_chart(freq)
 
@@ -36,4 +35,3 @@ def render_dashboard():
 
     st.subheader("Session Duration Over Time")
     st.line_chart(df.set_index("Date")["Duration (min)"])
-
