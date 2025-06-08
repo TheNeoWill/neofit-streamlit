@@ -1,3 +1,4 @@
+import base64
 import gspread
 import streamlit as st
 import json
@@ -5,6 +6,9 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 def write_workout_to_sheet(row_dict, spreadsheet_name="Workout Tracker", worksheet_name="Workout log"):
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+    # Decode base64 service account JSON
+    key_json = base64.b64decode(st.secrets["google"]["service_account_b64"]).decode("utf-8")
+    credentials = ServiceAccountCredentials.from_json_keyfile_dict(json.loads(key_json), scope)
     credentials = ServiceAccountCredentials.from_json_keyfile_dict(json.loads(st.secrets["google"]["service_account"]), scope)
     client = gspread.authorize(credentials)
 
