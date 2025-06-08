@@ -19,7 +19,7 @@ def render_dashboard():
                                          .str.replace("mins", "", case=False)
                                          .str.strip(), errors="coerce")
 
-    df["Intensity (1–5)"] = pd.to_numeric(df["Intensity (1-5)"], errors="coerce")
+    df["Intensity (1-5)"] = pd.to_numeric(df["Intensity (1-5)"], errors="coerce")
 
     st.subheader("Workout Frequency (Last 4 Weeks)")
     freq = df["Date"].dt.to_period("W").value_counts().sort_index()
@@ -33,3 +33,4 @@ def render_dashboard():
 
     st.subheader("Session Duration Over Time")
     st.line_chart(df.set_index("Date")["Duration (min)"])
+
