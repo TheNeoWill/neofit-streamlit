@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 from src.sheet_reader import load_workout_data
@@ -15,15 +14,14 @@ def render_dashboard():
     df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
     df = df.dropna(subset=["Date"])
 
-    df["Duration (min)"] = pd.to_numeric(df["Duration (min)"]
-                                         .astype(str)
-                                         .str.replace("mins", "", case=False)
-                                         .str.strip(), errors="coerce")
+    df["Duration (min)"] = pd.to_numeric(
+        df["Duration (min)"].astype(str).str.replace("mins", "", case=False).str.strip(),
+        errors="coerce"
+    )
 
-    df["Intensity (1-5)"] = pd.to_numeric(df["Intensity (1-5)"], errors="coerce")
+    df["Intensity (1–5)"] = pd.to_numeric(df["Intensity (1–5)"], errors="coerce")
 
     st.subheader("Workout Frequency (Last 4 Weeks)")
-    # Format week labels like "Jun 03"
     df["Week"] = df["Date"].dt.to_period("W").apply(lambda r: r.start_time.strftime("%b %d"))
     freq = df["Week"].value_counts().sort_index()
     st.bar_chart(freq)
@@ -32,7 +30,7 @@ def render_dashboard():
     st.bar_chart(df["Body Focus"].value_counts())
 
     st.subheader("Intensity Over Time")
-    st.line_chart(df.set_index("Date")["Intensity (1-5)"])
+    st.line_chart(df.set_index("Date")["Intensity (1–5)"])
 
     st.subheader("Session Duration Over Time")
     st.line_chart(df.set_index("Date")["Duration (min)"])
