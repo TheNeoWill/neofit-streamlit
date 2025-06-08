@@ -4,6 +4,7 @@ import json
 import base64
 import streamlit as st
 import pandas as pd
+st.write("🔍 Raw secret preview:", repr(st.secrets["google"]["service_account_b64"][:200]))
 from src.sheet_reader import load_workout_data
 
 def render_dashboard():
